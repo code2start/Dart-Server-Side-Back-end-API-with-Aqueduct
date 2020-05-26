@@ -1,4 +1,5 @@
-name: backend1
+name: backend2
+
 description: An empty Aqueduct application.
 version: 0.0.1
 author: stable|kernel <jobs@stablekernel.com>
