@@ -7,6 +7,8 @@ class CourseController extends ResourceController {
     {'id': 3, 'name': 'Flutter Course'},
     {'id': 4, 'name': 'Laravel Course'},
   ];
+  CourseController(this.context);
+  final ManagedContext context;
 
   @Operation.get()
   Future<Response> getAllCourses() async {
