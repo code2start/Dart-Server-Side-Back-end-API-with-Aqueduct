@@ -28,13 +28,29 @@ class CourseController extends ResourceController {
   @Operation.post()
   Future<Response> createCourse(
       @Bind.body(ignore: ['id']) Course course) async {
-    /* final Map<String, dynamic> body = await request.body.decode();
-    final q = Query<Course>(context);
-    q.values.name = body['name'] as String;
-    q.values.content = body['content'] as String; */
-    //insert into _course (name, content) values(body['name'],)
-    final q = Query<Course>(context)..values = course;
-    final insertedCourse = await q.insert();
-    return Response.ok(insertedCourse);
+    final courseQuery = Query<Course>(context)..values = course;
+    final newCourse = await courseQuery.insert();
+    return Response.ok(newCourse);
+  }
+
+  @Operation.put('id')
+  Future<Response> updateCourse(
+      @Bind.path('id') int id, @Bind.body(ignore: ['id']) Course course) async {
+    final q = Query<Course>(context)..where((c) => c.id).equalTo(id);
+    q.values = course;
+    final selectedCourse = await q.fetchOne();
+    if (selectedCourse == null) {
+      return Response.notFound();
+    }
+    final updateCourse = await q.updateOne();
+    return Response.ok(updateCourse);
+  }
+
+  @Operation.delete('id')
+  Future<Response> deleteCourse(@Bind.path('id') int id) async {
+    final q = Query<Course>(context)..where((c) => c.id).equalTo(id);
+    int affected = await q.delete();
+    var message = {"message": "$affected was deleted"};
+    return Response.ok(message);
   }
 }
