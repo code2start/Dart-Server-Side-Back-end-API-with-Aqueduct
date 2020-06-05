@@ -9,10 +9,14 @@ class Lesson3Channel extends ApplicationChannel {
   Future prepare() async {
     logger.onRecord.listen(
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
-
+    final config = CoursesConfig(options.configurationFilePath);
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-        'postgres', 'root', 'localhost', 5432, 'courses');
+        config.database.username,
+        config.database.password,
+        config.database.host,
+        config.database.port,
+        config.database.databaseName);
     context = ManagedContext(dataModel, persistentStore);
   }
 
@@ -29,4 +33,9 @@ class Lesson3Channel extends ApplicationChannel {
 
     return router;
   }
+}
+
+class CoursesConfig extends Configuration {
+  CoursesConfig(String path) : super.fromFile(File(path));
+  DatabaseConfiguration database;
 }

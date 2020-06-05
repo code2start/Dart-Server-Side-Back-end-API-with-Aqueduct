@@ -36,21 +36,22 @@ class CourseController extends ResourceController {
   @Operation.put('id')
   Future<Response> updateCourse(
       @Bind.path('id') int id, @Bind.body(ignore: ['id']) Course course) async {
-    final q = Query<Course>(context)..where((c) => c.id).equalTo(id);
-    q.values = course;
+    final q = Query<Course>(context)
+      ..where((c) => c.id).equalTo(id)
+      ..values = course;
     final selectedCourse = await q.fetchOne();
     if (selectedCourse == null) {
       return Response.notFound();
     }
-    final updateCourse = await q.updateOne();
-    return Response.ok(updateCourse);
+    final updatedCourse = await q.updateOne();
+    return Response.ok(updatedCourse);
   }
 
   @Operation.delete('id')
   Future<Response> deleteCourse(@Bind.path('id') int id) async {
     final q = Query<Course>(context)..where((c) => c.id).equalTo(id);
-    int affected = await q.delete();
-    var message = {"message": "$affected was deleted"};
+    final affected = await q.delete();
+    var message = {'message': '$affected courses deleted'};
     return Response.ok(message);
   }
 }
