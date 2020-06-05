@@ -24,4 +24,17 @@ class CourseController extends ResourceController {
     }
     return Response.ok(course);
   }
+
+  @Operation.post()
+  Future<Response> createCourse(
+      @Bind.body(ignore: ['id']) Course course) async {
+    /* final Map<String, dynamic> body = await request.body.decode();
+    final q = Query<Course>(context);
+    q.values.name = body['name'] as String;
+    q.values.content = body['content'] as String; */
+    //insert into _course (name, content) values(body['name'],)
+    final q = Query<Course>(context)..values = course;
+    final insertedCourse = await q.insert();
+    return Response.ok(insertedCourse);
+  }
 }

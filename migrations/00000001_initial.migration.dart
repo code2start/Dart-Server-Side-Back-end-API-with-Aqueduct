@@ -33,34 +33,39 @@ class Migration1 extends Migration {
   Future seed() async {
     final courses = [
       {
-        'name': 'Dart Programming',
+        'name': 'Dart programming',
         'content':
-            'Dart Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar eros. In ultricies urna nec facilisis ultrices. Nullam consequat eros ac felis pellentesque pretium. '
+            'Dart Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
       },
       {
-        'name': 'Flutter Mobile',
+        'name': 'PHP programming',
         'content':
-            'Flutter Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar eros. In ultricies urna nec facilisis ultrices. Nullam consequat eros ac felis pellentesque pretium. '
+            'PHP Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
       },
       {
-        'name': 'ASP.net Programming',
+        'name': 'Dart Server',
         'content':
-            'ASP.NET Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar eros. In ultricies urna nec facilisis ultrices. Nullam consequat eros ac felis pellentesque pretium. '
+            'Dart Server Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
       },
       {
-        'name': 'Dart Server Side',
+        'name': 'ASP.net',
         'content':
-            'Dart server Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar eros. In ultricies urna nec facilisis ultrices. Nullam consequat eros ac felis pellentesque pretium. '
+            'ASP.net Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
       },
       {
-        'name': 'JavaScript',
+        'name': 'C# ',
         'content':
-            'JavaScript Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar eros. In ultricies urna nec facilisis ultrices. Nullam consequat eros ac felis pellentesque pretium. '
+            'C# Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
+      },
+      {
+        'name': 'Flutter Mobile ',
+        'content':
+            'Flutter Mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam est, laoreet eget magna quis, luctus mollis massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra,'
       },
     ];
     for (final course in courses) {
       await database.store.execute(
-          "insert into _course(name, content) values (@name,@content)",
+          "insert into _course(name,content) values(@name,@content)",
           substitutionValues: {
             "name": course['name'],
             "content": course['content']

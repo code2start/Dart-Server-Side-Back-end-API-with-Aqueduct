@@ -8,5 +8,6 @@ class _Course {
   int id;
   @Column(unique: true)
   String name;
+
   String content;
 }
