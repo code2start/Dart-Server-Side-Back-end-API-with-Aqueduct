@@ -1,4 +1,5 @@
 import 'package:lesson11/lesson11.dart';
+import 'package:lesson11/model/category.dart';
 
 class Product extends ManagedObject<_Product> implements _Product {}
 
@@ -8,4 +9,7 @@ class _Product {
   int id;
   String name;
   double price;
+
+  @Relate(#products)
+  Category category;
 }

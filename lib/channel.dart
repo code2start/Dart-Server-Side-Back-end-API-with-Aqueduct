@@ -1,23 +1,25 @@
 import 'package:lesson11/controller/category_controller.dart';
-import 'package:lesson11/database_config.dart';
+import 'package:lesson11/db_config.dart';
 import 'package:lesson11/model/category.dart';
+import 'package:lesson11/model/product.dart';
 
 import 'lesson11.dart';
 
 class Lesson11Channel extends ApplicationChannel {
   ManagedContext context;
+
   @override
   Future prepare() async {
     logger.onRecord.listen(
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
-    final config = DatabaseConfig(options.configurationFilePath);
-    final tables = ManagedDataModel([Category]);
+    final dbConf = DbConfig(options.configurationFilePath);
+    final tables = ManagedDataModel([Category, Product]);
     final dbConnection = PostgreSQLPersistentStore.fromConnectionInfo(
-        config.database.username,
-        config.database.password,
-        config.database.host,
-        config.database.port,
-        config.database.password);
+        dbConf.database.username,
+        dbConf.database.password,
+        dbConf.database.host,
+        dbConf.database.port,
+        dbConf.database.databaseName);
     context = ManagedContext(tables, dbConnection);
   }
 

@@ -2,5 +2,5 @@ database:
   host: localhost
   port: 5432
   username: demo_user
-  password: demo_user
-  databaseName: demodb
+  password: demo_password
+  databaseName: demodb;
