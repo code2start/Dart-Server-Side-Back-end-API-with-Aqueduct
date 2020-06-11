@@ -1,4 +1,5 @@
 import 'package:lesson11/controller/category_controller.dart';
+import 'package:lesson11/controller/product_controller.dart';
 import 'package:lesson11/db_config.dart';
 import 'package:lesson11/model/category.dart';
 import 'package:lesson11/model/product.dart';
@@ -37,7 +38,7 @@ class Lesson11Channel extends ApplicationChannel {
     router
         .route('/categories/:categoryId/products')
         .link(() => CategoryController(context));
-
+    router.route('/products/[:id]').link(() => ProductController(context));
     return router;
   }
 }

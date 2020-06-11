@@ -4,6 +4,7 @@ import 'package:lesson11/model/category.dart';
 class CategoryController extends ResourceController {
   CategoryController(this.context);
   ManagedContext context;
+
   @Operation.get()
   Future<Response> getAllCategories() async {
     final q = Query<Category>(context);
@@ -22,8 +23,8 @@ class CategoryController extends ResourceController {
   Future<Response> getAllProductsByCategoryId(
       @Bind.path('categoryId') int id) async {
     final q = Query<Category>(context)
-      ..where((c) => c.id).equalTo(id)
-      ..join(set: (c) => c.products);
+      ..join(set: (c) => c.products)
+      ..where((c) => c.id).equalTo(id);
     final products = await q.fetch();
     return Response.ok(products);
   }
