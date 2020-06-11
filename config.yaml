@@ -3,4 +3,4 @@ database:
   port: 5432
   username: demo_user
   password: demo_password
-  databaseName: demodb;
+  databaseName: demodb

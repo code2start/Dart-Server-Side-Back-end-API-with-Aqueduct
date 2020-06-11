@@ -9,7 +9,6 @@ class _Product {
   int id;
   String name;
   double price;
-
   @Relate(#products)
   Category category;
 }

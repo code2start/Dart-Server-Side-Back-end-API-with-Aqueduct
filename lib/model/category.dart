@@ -9,6 +9,5 @@ class _Category {
   int id;
 
   String name;
-
   ManagedSet<Product> products;
 }

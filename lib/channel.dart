@@ -33,7 +33,11 @@ class Lesson11Channel extends ApplicationChannel {
     router.route('/about').linkFunction((request) async {
       return Response.ok('About page');
     });
-    router.route('/categories/[:id]').link(() => CategoryController());
+    router.route('/categories/[:id]').link(() => CategoryController(context));
+    router
+        .route('/categories/:categoryId/products')
+        .link(() => CategoryController(context));
+
     return router;
   }
 }
