@@ -21,7 +21,7 @@ class CourseController extends ResourceController {
     final course =
         _courses.firstWhere((item) => item['id'] == id, orElse: () => null);
     if (course == null) {
-      Response.notFound();
+      return Response.notFound();
     }
     return Response.ok(course);
   }
