@@ -29,6 +29,7 @@ class CategoryController extends ResourceController {
     return Response.ok(products);
   }
 
+  //CRUD
   @Operation.post()
   Future<Response> createCategory(
       @Bind.body(ignore: ['id']) Category category) async {
@@ -51,6 +52,9 @@ class CategoryController extends ResourceController {
   Future<Response> deleteCategory(@Bind.path('id') int id) async {
     final q = Query<Category>(context)..where((c) => c.id).equalTo(id);
     final affected = await q.delete();
-    return Response.ok({'message': 'There are $affected category removed'});
+    if (affected > 0) {
+      return Response.ok({'message': 'There is $affected category removed'});
+    }
+    return Response.notFound();
   }
 }
