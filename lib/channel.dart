@@ -1,9 +1,13 @@
+import 'package:lesson11/controller/authors_controller.dart';
 import 'package:lesson11/controller/category_controller.dart';
 import 'package:lesson11/controller/product_controller.dart';
 import 'package:lesson11/db_config.dart';
+import 'package:lesson11/model/author.dart';
+import 'package:lesson11/model/book.dart';
 import 'package:lesson11/model/category.dart';
 import 'package:lesson11/model/product.dart';
 
+import 'controller/books_controller.dart';
 import 'lesson11.dart';
 
 class Lesson11Channel extends ApplicationChannel {
@@ -14,7 +18,7 @@ class Lesson11Channel extends ApplicationChannel {
     logger.onRecord.listen(
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
     final dbConf = DbConfig(options.configurationFilePath);
-    final tables = ManagedDataModel([Category, Product]);
+    final tables = ManagedDataModel([Category, Product, Author, Book]);
     final dbConnection = PostgreSQLPersistentStore.fromConnectionInfo(
         dbConf.database.username,
         dbConf.database.password,
@@ -39,6 +43,8 @@ class Lesson11Channel extends ApplicationChannel {
         .route('/categories/:categoryId/products')
         .link(() => CategoryController(context));
     router.route('/products/[:id]').link(() => ProductController(context));
+    router.route('/authors/[:id]').link(() => AuthorsController(context));
+    router.route('/books/[:id]').link(() => BooksController(context));
     return router;
   }
 }

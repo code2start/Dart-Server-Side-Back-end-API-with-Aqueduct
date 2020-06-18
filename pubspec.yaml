@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   aqueduct: 3.3.0+1
+  mime:
+  http_server:
 
 dev_dependencies:
   test: ^1.0.0

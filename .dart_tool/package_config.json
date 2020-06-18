@@ -98,6 +98,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "http_server",
+      "rootUri": "file:///C:/Users/Mohamed/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/http_server-0.9.8+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "io",
       "rootUri": "file:///C:/Users/Mohamed/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/io-0.3.4",
       "packageUri": "lib/",
@@ -362,7 +368,7 @@
       "languageVersion": "2.0"
     }
   ],
-  "generated": "2020-06-11T04:41:49.687108Z",
+  "generated": "2020-06-14T00:59:26.055398Z",
   "generator": "pub",
   "generatorVersion": "2.7.2"
 }
